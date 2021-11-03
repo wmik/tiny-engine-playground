@@ -1,5 +1,3 @@
-import { TinyEngine } from '../engine/engine';
-
 let dt;
 let lastTimestamp = 0;
 let fps;
@@ -24,3 +22,5 @@ Game.prototype.loop = function (timestamp) {
 
   window.requestAnimationFrame(this.loop.bind(this));
 };
+
+window.Game = Game;

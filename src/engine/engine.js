@@ -1,4 +1,4 @@
-export function TinyEngine({ ctx }) {
+function TinyEngine({ ctx }) {
   this.ctx = ctx;
   this.models = [];
 }
@@ -17,3 +17,5 @@ TinyEngine.prototype.render = function () {
   }, this);
   this.ctx.restore();
 };
+
+window.TinyEngine = TinyEngine;
