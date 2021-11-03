@@ -17,3 +17,5 @@ Model.prototype.render = function (ctx) {};
  * @param {number} dt - time passed since last frame
  */
 Model.prototype.update = function (dt) {};
+
+window.Model = Model;

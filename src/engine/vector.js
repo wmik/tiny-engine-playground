@@ -43,3 +43,5 @@ Vector.prototype.normalize = function () {
     this.divide(currentMagnitude);
   }
 };
+
+window.Vector = Vector;
