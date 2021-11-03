@@ -1,4 +1,4 @@
-function TinyEngine({ ctx }) {
+export function TinyEngine({ ctx }) {
   this.ctx = ctx;
   this.models = [];
 }
