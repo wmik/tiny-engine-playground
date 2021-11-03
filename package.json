@@ -1,18 +1,24 @@
 {
-  "name": "vanilla",
+  "name": "tiny-engine-playground",
   "version": "1.0.0",
-  "description": "JavaScript example starter project",
+  "description": "2D canvas playground to test ray casting",
   "main": "index.html",
   "scripts": {
     "start": "parcel index.html --open",
     "build": "parcel build index.html"
   },
-  "dependencies": { "parcel-bundler": "^1.6.1" },
+  "dependencies": {
+    "parcel-bundler": "^1.6.1"
+  },
   "devDependencies": {
     "@babel/core": "7.2.0"
   },
   "resolutions": {
     "@babel/preset-env": "7.13.8"
   },
-  "keywords": ["javascript", "starter"]
+  "keywords": [
+    "canvas",
+    "2d-animation",
+    "ray-casting"
+  ]
 }
