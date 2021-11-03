@@ -23,7 +23,9 @@ Car.prototype.render = function (ctx) {
 
   if (closest.length) {
     closest.forEach(function (close) {
-      ctx.moveTo(this.pos.x + this.w, this.pos.y + this.h / 2);
+      let x = this.vx < 0 ? this.pos.x : this.pos.x + this.w;
+
+      ctx.moveTo(x, this.pos.y + this.h / 2);
       ctx.lineTo(close.x, close.y);
       ctx.strokeStyle = 'purple';
       ctx.stroke();
