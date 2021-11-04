@@ -1,7 +1,6 @@
-function Model({ pos, w, h, r, vx, vy, color }) {
+function Model({ pos, w, h, r, v, color }) {
   this.pos = pos;
-  this.vx = vx;
-  this.vy = vy;
+  this.v = v;
   this.r = r;
   this.h = h;
   this.w = w;

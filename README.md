@@ -12,3 +12,6 @@ Created with CodeSandbox
 - [2D car steering physics](http://engineeringdotnet.blogspot.com/2010/04/simple-2d-car-physics-in-games.html)
 - [Video 2D car steering](https://godotforums.org/discussion/19918/how-to-code-top-down-2d-car-steering-movement)
 - [Sprite position app](https://w3samples.com/Sprite-Get-Position)
+- [MDN Games](https://developer.mozilla.org/en-US/docs/Games)
+- [Understanding steering behavior](https://gamedevelopment.tutsplus.com/series/understanding-steering-behaviors--gamedev-12732)
+- [Game programming patterns](https://gameprogrammingpatterns.com/)

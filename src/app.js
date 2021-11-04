@@ -1,24 +1,36 @@
 let canvas = document.getElementById('world');
 
 let boundaries = [
-  // new Boundary({
-  //   start: new Vector({ x: 500, y: 10 }),
-  //   end: new Vector({ x: 500, y: 300 }),
-  //   color: 'lime',
-  //   vx: 0
-  // }),
-  // new Boundary({
-  //   start: new Vector({ x: 100, y: 10 }),
-  //   end: new Vector({ x: 100, y: 300 }),
-  //   color: 'lime',
-  //   vx: 0
-  // }),
-  // new Boundary({
-  //   start: new Vector({ x: 100, y: 10 }),
-  //   end: new Vector({ x: 400, y: 200 }),
-  //   color: 'lime',
-  //   vx: 0
-  // })
+  new Boundary({
+    start: new Vector({ x: 10, y: 200 }),
+    end: new Vector({ x: 10, y: 300 }),
+    color: 'lime',
+    v: new Vector({ x: 0, y: 0 })
+  }),
+  new Boundary({
+    start: new Vector({ x: 0, y: 100 }),
+    end: new Vector({ x: 500, y: 100 }),
+    color: 'lime',
+    v: new Vector({ x: 0, y: 0 })
+  }),
+  new Boundary({
+    start: new Vector({ x: 100, y: 200 }),
+    end: new Vector({ x: 300, y: 200 }),
+    color: 'lime',
+    v: new Vector({ x: 0, y: 0 })
+  }),
+  new Boundary({
+    start: new Vector({ x: 100, y: 200 }),
+    end: new Vector({ x: 100, y: 300 }),
+    color: 'lime',
+    v: new Vector({ x: 0, y: 0 })
+  }),
+  new Boundary({
+    start: new Vector({ x: 300, y: 200 }),
+    end: new Vector({ x: 500, y: 300 }),
+    color: 'lime',
+    v: new Vector({ x: 0, y: 0 })
+  })
 ];
 
 let to = new Car({
@@ -31,35 +43,35 @@ let to = new Car({
   w: 30,
   h: 20,
   color: 'blue',
-  vx: randomIntFromInterval(10, 20)
+  v: new Vector({ x: randomIntFromInterval(10, 20), y: 0 })
 });
 
 let toLeft = new Boundary({
   start: new Vector({ x: to.pos.x, y: to.pos.y }),
   end: new Vector({ x: to.pos.x, y: to.pos.y + to.h * 1.5 }),
   color: 'yellow',
-  vx: to.vx
+  v: new Vector({ x: to.v.x, y: 0 })
 });
 
 let toTop = new Boundary({
   start: new Vector({ x: to.pos.x, y: to.pos.y }),
   end: new Vector({ x: to.pos.x + to.w * 1.5, y: to.pos.y }),
   color: 'pink',
-  vx: to.vx
+  v: new Vector({ x: to.v.x, y: 0 })
 });
 
 let toRight = new Boundary({
   start: new Vector({ x: to.pos.x + to.w * 1.5, y: to.pos.y }),
   end: new Vector({ x: to.pos.x + to.w * 1.5, y: to.pos.y + to.h * 1.5 }),
   color: 'red',
-  vx: to.vx
+  v: new Vector({ x: to.v.x, y: 0 })
 });
 
 let toBottom = new Boundary({
   start: new Vector({ x: to.pos.x, y: to.pos.y + to.h * 1.5 }),
   end: new Vector({ x: to.pos.x + to.w * 1.5, y: to.pos.y + to.h * 1.5 }),
   color: 'purple',
-  vx: to.vx
+  v: new Vector({ x: to.v.x, y: 0 })
 });
 
 let fro = new Car({
@@ -73,7 +85,7 @@ let fro = new Car({
   w: 30,
   h: 20,
   color: 'crimson',
-  vx: -randomIntFromInterval(5, 28)
+  v: new Vector({ x: -randomIntFromInterval(5, 28), y: 0 })
 });
 
 let game = new Game({

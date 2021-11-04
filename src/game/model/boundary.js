@@ -1,8 +1,7 @@
-function Boundary({ start, end, color, ...opts }) {
+function Boundary({ start, end, ...opts }) {
   Model.call(this, opts);
   this.start = start;
   this.end = end;
-  this.color = color;
 }
 
 Boundary.prototype = Object.create(Model.prototype);
@@ -18,8 +17,8 @@ Boundary.prototype.render = function (ctx) {
 };
 
 Boundary.prototype.update = function (dt) {
-  this.start.x += this.vx * dt;
-  this.end.x += this.vx * dt;
+  this.start.x += this.v.x * dt;
+  this.end.x += this.v.x * dt;
 };
 
 window.Boundary = Boundary;

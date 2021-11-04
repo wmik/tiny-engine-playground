@@ -22,7 +22,7 @@ Car.prototype.render = function (ctx) {
     let frameWidth = 50;
     let frameHeight = 27;
 
-    if (this.vx < 0) {
+    if (this.v.x < 0) {
       ctx.translate(this.pos.x + this.w, this.pos.y + this.h);
       ctx.rotate(degreeToRadians(180));
       ctx.translate(-this.pos.x, -this.pos.y);
@@ -53,7 +53,7 @@ Car.prototype.render = function (ctx) {
 
   if (closest.length) {
     closest.forEach(function (close) {
-      let x = this.vx < 0 ? this.pos.x : this.pos.x + this.w;
+      let x = this.v.x < 0 ? this.pos.x : this.pos.x + this.w;
 
       ctx.moveTo(x, this.pos.y + this.h / 2);
       ctx.lineTo(close.x, close.y);
@@ -65,7 +65,7 @@ Car.prototype.render = function (ctx) {
 };
 
 Car.prototype.update = function (dt) {
-  this.pos.x += this.vx * dt;
+  this.pos.x += this.v.x * dt;
 };
 
 Car.prototype.look = function (lines) {
