@@ -63,7 +63,7 @@ let toBottom = new Boundary({
 });
 
 let fro = new Car({
-  divisor: 5,
+  rayPrecision: 5,
   boundaries: boundaries.concat(toLeft, toTop, toRight, toBottom),
   pos: new Vector({
     x: 300,

@@ -2,9 +2,9 @@ function Car(opts) {
   Model.call(this, opts);
   this.rays = [];
   this.boundaries = opts.boundaries || [];
-  this.divisor = opts.divisor || 10; // degree of approximation
+  this.rayPrecision = opts.rayPrecision || 10; // degree of approximation
 
-  for (let degree = 0; degree < 360; degree += this.divisor) {
+  for (let degree = 0; degree < 360; degree += this.rayPrecision) {
     this.rays.push(new Ray(this.pos, degreeToRadians(degree)));
   }
 }
