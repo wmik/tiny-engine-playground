@@ -12,12 +12,42 @@ function Car(opts) {
 Car.prototype = Object.create(Model.prototype);
 Car.prototype.constructor = Model;
 
+let img = new Image();
+img.src = 'src/assets/cars.png';
+
 Car.prototype.render = function (ctx) {
-  ctx.beginPath();
-  ctx.fillStyle = this.color;
-  ctx.fillRect(this.pos.x, this.pos.y, this.w, this.h);
-  // ctx.arc(this.pos.x, this.pos.y, this.r, 0, 2 * Math.PI);
-  ctx.fill();
+  if (img.complete) {
+    let sx = 200;
+    let sy = 32;
+    let frameWidth = 80;
+    let frameHeight = 32;
+
+    if (this.vx < 0) {
+      ctx.translate(this.pos.x + this.w, this.pos.y + this.h);
+      ctx.rotate(degreeToRadians(180));
+      ctx.translate(-this.pos.x, -this.pos.y);
+    }
+
+    ctx.drawImage(
+      img,
+      sx,
+      sy,
+      frameWidth,
+      frameHeight,
+      this.pos.x,
+      this.pos.y,
+      frameWidth,
+      frameHeight
+    );
+
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+  } else {
+    ctx.beginPath();
+    ctx.fillStyle = this.color;
+    ctx.fillRect(this.pos.x, this.pos.y, this.w, this.h);
+    // ctx.arc(this.pos.x, this.pos.y, this.r, 0, 2 * Math.PI);
+    ctx.fill();
+  }
 
   let closest = this.look(this.boundaries);
 
@@ -27,6 +57,7 @@ Car.prototype.render = function (ctx) {
 
       ctx.moveTo(x, this.pos.y + this.h / 2);
       ctx.lineTo(close.x, close.y);
+      ctx.lineWidth = 0.125;
       ctx.strokeStyle = 'purple';
       ctx.stroke();
     }, this);
