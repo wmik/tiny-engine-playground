@@ -17,10 +17,10 @@ img.src = 'src/assets/cars.png';
 
 Car.prototype.render = function (ctx) {
   if (img.complete) {
-    let sx = 200;
-    let sy = 32;
-    let frameWidth = 80;
-    let frameHeight = 32;
+    let sx = 198;
+    let sy = 31;
+    let frameWidth = 50;
+    let frameHeight = 27;
 
     if (this.vx < 0) {
       ctx.translate(this.pos.x + this.w, this.pos.y + this.h);
