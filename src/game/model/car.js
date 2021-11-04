@@ -3,6 +3,7 @@ function Car(opts) {
   this.rays = [];
   this.boundaries = opts.boundaries || [];
   this.rayPrecision = opts.rayPrecision || 10; // degree of approximation
+  this.rayColor = opts.rayColor || 'transparent';
 
   for (let degree = 0; degree < 360; degree += this.rayPrecision) {
     this.rays.push(new Ray(this.pos, degreeToRadians(degree)));
@@ -58,8 +59,9 @@ Car.prototype.render = function (ctx) {
       ctx.moveTo(x, this.pos.y + this.h / 2);
       ctx.lineTo(close.x, close.y);
       ctx.lineWidth = 0.125;
-      ctx.strokeStyle = 'purple';
+      ctx.strokeStyle = this.rayColor;
       ctx.stroke();
+      ctx.closePath();
     }, this);
   }
 };

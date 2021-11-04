@@ -35,6 +35,7 @@ let boundaries = [
 
 let to = new Car({
   boundaries,
+  rayColor: 'maroon',
   pos: new Vector({
     x: 40,
     y: 160
@@ -75,6 +76,7 @@ let toBottom = new Boundary({
 });
 
 let fro = new Car({
+  rayColor: 'purple',
   rayPrecision: 5,
   boundaries: boundaries.concat(toLeft, toTop, toRight, toBottom),
   pos: new Vector({
@@ -90,7 +92,7 @@ let fro = new Car({
 
 let game = new Game({
   canvas,
-  models: [to, fro, toLeft, toTop, toRight, toBottom, ...boundaries]
+  models: [to, toLeft, toTop, toRight, toBottom, fro, ...boundaries]
 });
 
 game.loop(0);

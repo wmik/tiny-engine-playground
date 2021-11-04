@@ -16,9 +16,9 @@ Ray.prototype.cast = function (line) {
 
   let denominator = (x1 - x2) * (y3 - y4) - (y1 - y2) * (x3 - x4);
 
-  // if denominator is zero then the ray and line are parallel
+  // if denominator is zero then the ray and lines are parallel or no line exists
   if (denominator === 0) {
-    return new Vector({ x: 0, y: 0 });
+    return;
   }
 
   // numerator divided by denominator
