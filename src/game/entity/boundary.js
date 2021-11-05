@@ -1,11 +1,11 @@
 function Boundary({ start, end, ...opts }) {
-  Model.call(this, opts);
+  Entity.call(this, opts);
   this.start = start;
   this.end = end;
 }
 
-Boundary.prototype = Object.create(Model.prototype);
-Boundary.prototype.constructor = Model;
+Boundary.prototype = Object.create(Entity.prototype);
+Boundary.prototype.constructor = Entity;
 
 Boundary.prototype.render = function (ctx) {
   ctx.lineWidth = 2;
@@ -18,8 +18,8 @@ Boundary.prototype.render = function (ctx) {
 };
 
 Boundary.prototype.update = function (dt) {
-  this.start.x += this.v.x * dt;
-  this.end.x += this.v.x * dt;
+  this.start.x += this.velocity.x * dt;
+  this.end.x += this.velocity.x * dt;
 };
 
 window.Boundary = Boundary;

@@ -5,95 +5,103 @@ let boundaries = [
     start: new Vector({ x: 10, y: 200 }),
     end: new Vector({ x: 10, y: 300 }),
     color: 'lime',
-    v: new Vector({ x: 0, y: 0 })
+    velocity: new Vector({ x: 0, y: 0 })
   }),
   new Boundary({
     start: new Vector({ x: 0, y: 100 }),
     end: new Vector({ x: 500, y: 100 }),
     color: 'lime',
-    v: new Vector({ x: 0, y: 0 })
+    velocity: new Vector({ x: 0, y: 0 })
   }),
   new Boundary({
     start: new Vector({ x: 100, y: 200 }),
     end: new Vector({ x: 300, y: 200 }),
     color: 'lime',
-    v: new Vector({ x: 0, y: 0 })
+    velocity: new Vector({ x: 0, y: 0 })
   }),
   new Boundary({
     start: new Vector({ x: 100, y: 200 }),
     end: new Vector({ x: 100, y: 300 }),
     color: 'lime',
-    v: new Vector({ x: 0, y: 0 })
+    velocity: new Vector({ x: 0, y: 0 })
   }),
   new Boundary({
     start: new Vector({ x: 300, y: 200 }),
     end: new Vector({ x: 500, y: 300 }),
     color: 'lime',
-    v: new Vector({ x: 0, y: 0 })
+    velocity: new Vector({ x: 0, y: 0 })
   })
 ];
 
 let to = new Car({
   boundaries,
   rayColor: 'maroon',
-  pos: new Vector({
+  position: new Vector({
     x: 40,
     y: 160
   }),
-  r: 7,
-  w: 30,
-  h: 20,
+  radius: 7,
+  width: 30,
+  height: 20,
   color: 'blue',
-  v: new Vector({ x: randomIntFromInterval(10, 20), y: 0 })
+  velocity: new Vector({ x: randomIntFromInterval(10, 20), y: 0 })
 });
 
 let toLeft = new Boundary({
-  start: new Vector({ x: to.pos.x, y: to.pos.y }),
-  end: new Vector({ x: to.pos.x, y: to.pos.y + to.h * 1.5 }),
+  start: new Vector({ x: to.position.x, y: to.position.y }),
+  end: new Vector({ x: to.position.x, y: to.position.y + to.height * 1.5 }),
   color: 'yellow',
-  v: new Vector({ x: to.v.x, y: 0 })
+  velocity: new Vector({ x: to.velocity.x, y: 0 })
 });
 
 let toTop = new Boundary({
-  start: new Vector({ x: to.pos.x, y: to.pos.y }),
-  end: new Vector({ x: to.pos.x + to.w * 1.5, y: to.pos.y }),
+  start: new Vector({ x: to.position.x, y: to.position.y }),
+  end: new Vector({ x: to.position.x + to.width * 1.5, y: to.position.y }),
   color: 'pink',
-  v: new Vector({ x: to.v.x, y: 0 })
+  velocity: new Vector({ x: to.velocity.x, y: 0 })
 });
 
 let toRight = new Boundary({
-  start: new Vector({ x: to.pos.x + to.w * 1.5, y: to.pos.y }),
-  end: new Vector({ x: to.pos.x + to.w * 1.5, y: to.pos.y + to.h * 1.5 }),
+  start: new Vector({ x: to.position.x + to.width * 1.5, y: to.position.y }),
+  end: new Vector({
+    x: to.position.x + to.width * 1.5,
+    y: to.position.y + to.height * 1.5
+  }),
   color: 'red',
-  v: new Vector({ x: to.v.x, y: 0 })
+  velocity: new Vector({ x: to.velocity.x, y: 0 })
 });
 
 let toBottom = new Boundary({
-  start: new Vector({ x: to.pos.x, y: to.pos.y + to.h * 1.5 }),
-  end: new Vector({ x: to.pos.x + to.w * 1.5, y: to.pos.y + to.h * 1.5 }),
+  start: new Vector({ x: to.position.x, y: to.position.y + to.height * 1.5 }),
+  end: new Vector({
+    x: to.position.x + to.width * 1.5,
+    y: to.position.y + to.height * 1.5
+  }),
   color: 'purple',
-  v: new Vector({ x: to.v.x, y: 0 })
+  velocity: new Vector({ x: to.velocity.x, y: 0 })
 });
 
 let fro = new Car({
   rayColor: 'purple',
   rayPrecision: 5,
   boundaries: boundaries.concat(toLeft, toTop, toRight, toBottom),
-  pos: new Vector({
+  position: new Vector({
     x: 300,
     y: 130
   }),
-  r: 7,
-  w: 30,
-  h: 20,
+  radius: 7,
+  width: 30,
+  height: 20,
   color: 'crimson',
-  v: new Vector({ x: -randomIntFromInterval(5, 28), y: 0 })
+  velocity: new Vector({ x: -randomIntFromInterval(5, 28), y: 0 })
 });
 
 let game = new Game({
   canvas,
-  models: [to, toLeft, toTop, toRight, toBottom, fro, ...boundaries]
+  entities: [to, toLeft, toTop, toRight, toBottom, fro, ...boundaries]
 });
+
+game.assets.image.set('cars', 'src/assets/cars.png');
 
 game.loop(0);
 

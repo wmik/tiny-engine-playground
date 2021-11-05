@@ -1,33 +1,26 @@
 function Car(opts) {
-  Model.call(this, opts);
+  Entity.call(this, opts);
   this.rays = [];
   this.boundaries = opts.boundaries || [];
   this.rayPrecision = opts.rayPrecision || 10; // degree of approximation
   this.rayColor = opts.rayColor || 'transparent';
 
   for (let degree = 0; degree < 360; degree += this.rayPrecision) {
-    this.rays.push(new Ray(this.pos, degreeToRadians(degree)));
+    this.rays.push(new Ray(this.position, degreeToRadians(degree)));
   }
 }
 
-Car.prototype = Object.create(Model.prototype);
-Car.prototype.constructor = Model;
-
-let img = new Image();
-img.src = 'src/assets/cars.png';
+Car.prototype = Object.create(Entity.prototype);
+Car.prototype.constructor = Entity;
 
 Car.prototype.render = function (ctx) {
+  let img = this.game.assets.image.get('cars');
+
   if (img.complete) {
     let sx = 198;
     let sy = 31;
     let frameWidth = 50;
     let frameHeight = 27;
-
-    if (this.v.x < 0) {
-      ctx.translate(this.pos.x + this.w, this.pos.y + this.h);
-      ctx.rotate(degreeToRadians(180));
-      ctx.translate(-this.pos.x, -this.pos.y);
-    }
 
     ctx.drawImage(
       img,
@@ -35,8 +28,8 @@ Car.prototype.render = function (ctx) {
       sy,
       frameWidth,
       frameHeight,
-      this.pos.x,
-      this.pos.y,
+      this.position.x,
+      this.position.y,
       frameWidth,
       frameHeight
     );
@@ -45,8 +38,8 @@ Car.prototype.render = function (ctx) {
   } else {
     ctx.beginPath();
     ctx.fillStyle = this.color;
-    ctx.fillRect(this.pos.x, this.pos.y, this.w, this.h);
-    // ctx.arc(this.pos.x, this.pos.y, this.r, 0, 2 * Math.PI);
+    ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
+    // ctx.arc(this.position.x, this.position.y, this.r, 0, 2 * Math.PI);
     ctx.fill();
   }
 
@@ -54,9 +47,7 @@ Car.prototype.render = function (ctx) {
 
   if (closest.length) {
     closest.forEach(function (close) {
-      let x = this.v.x < 0 ? this.pos.x : this.pos.x + this.w;
-
-      ctx.moveTo(x, this.pos.y + this.h / 2);
+      ctx.moveTo(this.position.x, this.position.y + this.height / 2);
       ctx.lineTo(close.x, close.y);
       ctx.lineWidth = 0.125;
       ctx.strokeStyle = this.rayColor;
@@ -67,7 +58,13 @@ Car.prototype.render = function (ctx) {
 };
 
 Car.prototype.update = function (dt) {
-  this.pos.x += this.v.x * dt;
+  this.position.add(this.velocity.clone().multiply(dt));
+};
+
+Car.prototype.turn = function (ctx) {
+  ctx.translate(this.position.x + this.width, this.position.y + this.height);
+  ctx.rotate(degreeToRadians(180));
+  ctx.translate(-this.position.x, -this.position.y);
 };
 
 Car.prototype.look = function (lines) {
@@ -85,7 +82,7 @@ Car.prototype.look = function (lines) {
       point = ray.cast(line);
 
       if (point) {
-        let distance = Vector.distance(this.pos, point);
+        let distance = Vector.distance(this.position, point);
 
         if (distance < record) {
           record = distance;
