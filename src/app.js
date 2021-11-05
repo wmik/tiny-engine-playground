@@ -34,8 +34,10 @@ let boundaries = [
 ];
 
 let to = new Car({
+  destination: new Vector({ x: 500, y: 100 }),
+  maxSpeed: 80,
   boundaries,
-  rayColor: 'maroon',
+  rayColor: 'transparent',
   position: new Vector({
     x: 40,
     y: 160
@@ -82,6 +84,8 @@ let toBottom = new Boundary({
 });
 
 let fro = new Car({
+  destination: new Vector({ x: 500, y: 100 }),
+  maxSpeed: 30,
   rayColor: 'purple',
   rayPrecision: 5,
   boundaries: boundaries.concat(toLeft, toTop, toRight, toBottom),
@@ -98,7 +102,7 @@ let fro = new Car({
 
 let game = new Game({
   canvas,
-  entities: [to, toLeft, toTop, toRight, toBottom, fro, ...boundaries]
+  entities: [to /* toLeft, /*toTop, toRight, toBottom, fro*/, ...boundaries]
 });
 
 game.assets.image.set('cars', 'src/assets/cars.png');
